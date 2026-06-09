@@ -47,7 +47,9 @@ body {
 /* ─── Scene (perspective) ────────────────────────────── */
 .scene {
   perspective: 5500px;
+  -webkit-perspective: 5500px;
   perspective-origin: 50% 45%;
+  -webkit-perspective-origin: 50% 45%;
   transform-origin: top center;
 }
 
@@ -61,6 +63,7 @@ body {
   width: var(--BW);
   height: var(--BH);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform var(--DUR) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -150,8 +153,10 @@ body {
   height: var(--BH);
   transform-origin: left center;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform var(--DUR) cubic-bezier(0.645, 0.045, 0.355, 1.000);
   cursor: pointer;
+  will-change: transform;
 }
 .leaf.flipped { transform: rotateY(-180deg); }
 
@@ -161,8 +166,13 @@ body {
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: translateZ(0.1px);
+  -webkit-transform: translateZ(0.1px);
 }
-.leaf-back { transform: rotateY(180deg); }
+.leaf-back {
+  transform: rotateY(180deg) translateZ(0.1px);
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
+}
 
 /* Gradient darkening toward fold when page is mid-turn */
 .leaf-face.leaf-front::after {
